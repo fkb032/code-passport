@@ -1,4 +1,4 @@
-# Market Lens
+# Code Passport
 
 An automated skill that audits your codebase for market-specific cultural, UX, and product issues. Built from 4+ years of building products in Brazil (fraud prevention, real estate technology, ML-powered content moderation) and hard-won lessons about what breaks when you ship Western defaults into emerging markets. Goes beyond localization into payments, trust signals, identity verification, communication patterns, compliance, and more.
 
@@ -6,7 +6,7 @@ Currently supports **Brazil**. By [Farhan Khalaf](https://linkedin.com/in/farhan
 
 ## What It Checks
 
-Market Lens scans your actual codebase (templates, components, payment integrations, forms, validators, i18n files, copy, CSS, config) and produces a scored report. Every finding has a file path, line number, and specific fix recommendation.
+Code Passport scans your actual codebase (templates, components, payment integrations, forms, validators, i18n files, copy, CSS, config) and produces a scored report. Every finding has a file path, line number, and specific fix recommendation.
 
 **15 audit categories for Brazil:**
 
@@ -37,8 +37,8 @@ Market Lens scans your actual codebase (templates, components, payment integrati
 Copy the skill folder into your project's `.claude/skills/` directory:
 
 ```bash
-mkdir -p your-project/.claude/skills/market-lens
-cp market-lens/skill/SKILL.md your-project/.claude/skills/market-lens/
+mkdir -p your-project/.claude/skills/code-passport
+cp code-passport/skill/SKILL.md your-project/.claude/skills/code-passport/
 ```
 
 ## Usage
@@ -46,19 +46,19 @@ cp market-lens/skill/SKILL.md your-project/.claude/skills/market-lens/
 Open your AI coding assistant in the project directory and run:
 
 ```
-/market-lens brazil
+/code-passport brazil
 ```
 
-The skill scans your codebase and produces a report saved to `outputs/market-lens/audit-brazil-[date].md`.
+The skill scans your codebase and produces a report saved to `outputs/code-passport/audit-brazil-[date].md`.
 
 ## Example Output
 
-See [example-output.md](market-lens/skill/example-output.md) for a full sample audit report against a fictional e-commerce codebase.
+See [example-output.md](code-passport/skill/example-output.md) for a full sample audit report against a fictional e-commerce codebase.
 
 ## Repo Structure
 
 ```
-market-lens/
+code-passport/
   skill/
     SKILL.md           # Skill definition
     example-output.md  # Sample audit report
@@ -68,4 +68,3 @@ market-lens/
 
 - Additional markets (Arabic-speaking, India, Japan)
 - Web app version (paste a URL, pick a market, get a report)
-

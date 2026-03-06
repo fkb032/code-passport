@@ -1,18 +1,18 @@
 ---
-name: market-lens
+name: code-passport
 description: Audit a codebase for market-specific cultural, UX, and product considerations. Catches what Western-default design misses. Currently supports Brazil.
 disable-model-invocation: false
 user-invocable: true
 ---
 
-# /market-lens - Market-Specific Product Audit
+# /code-passport - Market-Specific Product Audit
 
 Scan a codebase for cultural, UX, and product issues that break or underperform in a specific market. Goes beyond localization into payments, trust, identity, communication patterns, forms, compliance, and social dynamics.
 
 ## Quick Start
 
 ```
-/market-lens brazil
+/code-passport brazil
 ```
 
 Then provide:
@@ -21,7 +21,7 @@ Then provide:
 
 I'll scan the codebase and produce a scored report with specific findings, file locations, and fix recommendations.
 
-**Output:** `outputs/market-lens/audit-brazil-[date].md`
+**Output:** `outputs/code-passport/audit-brazil-[date].md`
 **Time:** ~5 minutes depending on codebase size
 
 **Supported markets:** Brazil (more coming)
@@ -350,7 +350,7 @@ Read: user model/schema, signup form, profile components, any component renderin
 After scanning all categories, produce the report in this format:
 
 ```markdown
-# Market Lens: Brazil Audit
+# Code Passport: Brazil Audit
 **Project:** [project name]
 **Date:** [date]
 **Scanned:** [number] files across [number] directories
@@ -448,7 +448,7 @@ _These should be specific to what was actually found in this codebase, not gener
 
 ## Step 4: Output and Next Steps
 
-1. **Save report** to `outputs/market-lens/audit-brazil-[date].md`
+1. **Save report** to `outputs/code-passport/audit-brazil-[date].md`
 
 2. **Display summary:**
 ```
@@ -463,7 +463,7 @@ Top 3 fixes:
 2. Add CPF field with checksum validation at checkout
 3. Fix currency formatting (3 files use USD format)
 
-Full report: outputs/market-lens/audit-brazil-[date].md
+Full report: outputs/code-passport/audit-brazil-[date].md
 ```
 
 3. **Offer next steps:**

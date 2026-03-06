@@ -1,4 +1,4 @@
-# Market Lens: Brazil Audit
+# Code Passport: Brazil Audit
 **Project:** acme-ecommerce
 **Date:** 2026-03-05
 **Scanned:** 847 files across 62 directories
