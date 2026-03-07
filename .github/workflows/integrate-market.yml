@@ -1,0 +1,85 @@
+name: Integrate Market
+
+on:
+  push:
+    branches: [main]
+    paths: ['markets/*.md']
+
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install @anthropic-ai/sdk
+
+      - name: Integrate market files
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node .github/scripts/integrate-market.mjs
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if [ -n "$(git diff --name-only)" ]; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Get contributor info
+        id: contributor
+        run: |
+          # Get the GitHub username of who authored the commit that triggered this
+          CONTRIBUTOR=$(gh api repos/${{ github.repository }}/commits/${{ github.sha }} --jq '.author.login // empty')
+          echo "username=${CONTRIBUTOR}" >> $GITHUB_OUTPUT
+          # Get changed market files for the PR body
+          CHANGED=$(git diff HEAD~1 --name-only -- 'markets/*.md' | xargs -I{} basename {} .md | paste -sd ', ' -)
+          echo "markets=${CHANGED}" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create PR and notify contributor
+        if: steps.changes.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CONTRIBUTOR: ${{ steps.contributor.outputs.username }}
+          MARKETS: ${{ steps.contributor.outputs.markets }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          BRANCH="auto/integrate-market-$(date +%s)"
+          git checkout -b "$BRANCH"
+          git add -A
+          git commit -m "Integrate new market into Code Passport"
+          git push origin "$BRANCH"
+
+          PR_URL=$(gh pr create \
+            --title "Auto: integrate ${MARKETS} market checklist" \
+            --body "$(cat <<EOF
+          ## What this does
+
+          A new market knowledge file was merged into \`markets/\`. This PR:
+
+          1. Converted narrative knowledge to structured checklist format (via Claude API)
+          2. Updated the supported markets list in \`code-passport/skill/SKILL.md\`
+
+          **Markets:** ${MARKETS}
+          **Original contributor:** @${CONTRIBUTOR}
+
+          Please review the generated checklist for accuracy before merging.
+          The contributor will be notified when this PR is approved.
+          EOF
+          )" \
+            --base main)
+
+          # Add contributor as reviewer so they get notified on approval/merge
+          if [ -n "$CONTRIBUTOR" ] && [ "$CONTRIBUTOR" != "${{ github.repository_owner }}" ]; then
+            gh pr edit "$PR_URL" --add-reviewer "$CONTRIBUTOR" || true
+          fi
