@@ -3,7 +3,7 @@ name: Integrate Market
 on:
   push:
     branches: [main]
-    paths: ['markets/*.md']
+    paths: ['skills/code-passport/markets/*.md']
 
 jobs:
   integrate:
@@ -40,10 +40,10 @@ jobs:
           CONTRIBUTOR=$(gh api repos/${{ github.repository }}/commits/${{ github.sha }} --jq '.author.login // empty')
           echo "username=${CONTRIBUTOR}" >> $GITHUB_OUTPUT
           # Get changed market files from what the script modified + what was pushed
-          CHANGED=$(git diff --name-only -- 'markets/*.md' | xargs -I{} basename {} .md | paste -sd ', ' -)
+          CHANGED=$(git diff --name-only -- 'skills/code-passport/markets/*.md' | xargs -I{} basename {} .md | paste -sd ', ' -)
           # Fallback: if script didn't modify anything, use the triggering commit
           if [ -z "$CHANGED" ]; then
-            CHANGED=$(git diff HEAD~1 --name-only -- 'markets/*.md' | xargs -I{} basename {} .md | paste -sd ', ' -)
+            CHANGED=$(git diff HEAD~1 --name-only -- 'skills/code-passport/markets/*.md' | xargs -I{} basename {} .md | paste -sd ', ' -)
           fi
           echo "markets=${CHANGED}" >> $GITHUB_OUTPUT
         env:
@@ -60,7 +60,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           BRANCH="auto/integrate-market-$(date +%s)"
           git checkout -b "$BRANCH"
-          git add markets/ .claude/skills/code-passport/SKILL.md
+          git add skills/code-passport/
           git commit -m "Integrate new market into Code Passport"
           git push origin "$BRANCH"
 
@@ -69,10 +69,10 @@ jobs:
             --body "$(cat <<EOF
           ## What this does
 
-          A new market knowledge file was merged into \`markets/\`. This PR:
+          A new market knowledge file was merged into \`skills/code-passport/markets/\`. This PR:
 
           1. Converted narrative knowledge to structured checklist format (via Claude API)
-          2. Updated the supported markets list in \`.claude/skills/code-passport/SKILL.md\`
+          2. Updated the supported markets list in \`skills/code-passport/SKILL.md\`
 
           **Markets:** ${MARKETS}
           **Original contributor:** @${CONTRIBUTOR}

@@ -39,7 +39,7 @@ You are conducting a structured interview with a domain expert. Your job is to e
 
 **Their role:** Domain expert. They have the knowledge. They may not know how to structure it.
 
-**The output:** One or more market knowledge files saved to `markets/[market-name].md`.
+**The output:** One or more market knowledge files saved to `skills/code-passport/markets/[market-name].md`.
 
 ---
 
@@ -98,7 +98,7 @@ Then ask: "And which markets can you speak to? List as many as you'd like — we
 
 ### Phase 1: Context (2-4 questions)
 
-After they name their market, check if `markets/[market-name].md` already exists.
+After they name their market, check if `skills/code-passport/markets/[market-name].md` already exists.
 
 **If the market file exists:** Switch to **Update Mode** (see below).
 
@@ -214,7 +214,7 @@ Then show the full file:
 > 2. Anything you'd reword?
 > 3. Any checklist items that are off?
 
-Make their edits, then save to `markets/[market-name].md`.
+Make their edits, then save to `skills/code-passport/markets/[market-name].md`.
 
 ---
 
@@ -255,7 +255,7 @@ For each market they listed, run a focused interview on ONLY their domain sectio
 
 For each market:
 
-1. Check if `markets/[market-name].md` exists
+1. Check if `skills/code-passport/markets/[market-name].md` exists
    - **If it exists:** Read it. Show them what's currently in their relevant section(s). Ask: "Here's what we currently have for [domain] in [market]. What's missing, wrong, or could be sharper?"
    - **If it doesn't exist:** Start fresh for their section(s)
 
@@ -278,7 +278,7 @@ Show each file for review before saving. Same review questions as generalist flo
 
 ## Update Mode (for existing markets)
 
-When a contributor names a market that already has a `markets/[market-name].md` file:
+When a contributor names a market that already has a `skills/code-passport/markets/[market-name].md` file:
 
 1. **Read the existing file** silently
 2. **Identify gaps:** Which sections have `<!-- Needs contributor -->`? Which sections have thin content?
@@ -459,7 +459,7 @@ Tell the contributor:
 
 If they say yes:
 1. `git checkout -b market/[market-name]`
-2. `git add markets/[market-name].md`
+2. `git add skills/code-passport/markets/[market-name].md`
 3. `git commit -m "Add [market-name] market knowledge"` (or "Update [market-name] market knowledge" for updates)
 4. `git push -u origin market/[market-name]`
 5. `gh pr create --title "Add market: [Market Name]" --body "..."` (see PR template below)
@@ -485,16 +485,16 @@ Run steps 1-4 from Path A, then tell them:
 
 Use `gh` to submit as an issue instead (if `gh` is available):
 ```
-gh issue create --repo [repo] --title "Market contribution: [Market Name]" --body-file markets/[market-name].md
+gh issue create --repo [repo] --title "Market contribution: [Market Name]" --body-file skills/code-passport/markets/[market-name].md
 ```
 
 If `gh` isn't available either, tell them:
-> Your file is saved locally at `markets/[market-name].md`.
+> Your file is saved locally at `skills/code-passport/markets/[market-name].md`.
 > To submit it, open an issue on the Code Passport GitHub repo and paste the file contents.
 
 **For domain experts contributing to multiple markets:** Create one branch with all market files and one PR:
 1. `git checkout -b expertise/[domain]-[contributor-shortname]`
-2. `git add markets/[market-1].md markets/[market-2].md ...`
+2. `git add skills/code-passport/markets/[market-1].md skills/code-passport/markets/[market-2].md ...`
 3. `git commit -m "Add [domain] knowledge for [market-1], [market-2], ..."`
 4. Single PR covering all markets
 

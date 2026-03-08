@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { Check, Copy, Download, Github, Sparkles, Stamp, TerminalSquare } from "lucide-react";
+import { Check, Copy, Download, Sparkles, Stamp, TerminalSquare } from "lucide-react";
 import { SKILL_MD_CONTENT } from "../data/skill-content";
 
-const INSTALL_CMD = `mkdir -p .claude/skills/code-passport && curl -sL https://raw.githubusercontent.com/fkb032/code-passport/main/SKILL.md -o .claude/skills/code-passport/SKILL.md`;
-
+const INSTALL_CMD = `npx skills add fkb032/code-passport`;
 const SKILL_URL = "https://raw.githubusercontent.com/fkb032/code-passport/main/SKILL.md";
 
 async function fetchSkillContent(): Promise<string> {
@@ -29,52 +28,40 @@ function InstallBlock() {
 
   return (
     <div className="w-full max-w-2xl">
-      {/* Tabs */}
-      <div className="flex items-center justify-between mb-2">
-        <div className="flex items-center gap-1">
-          <button
-            onClick={() => setTab("terminal")}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-colors cursor-pointer ${
-              tab === "terminal"
-                ? "bg-slate-800 text-white"
-                : "text-slate-400 hover:text-slate-600"
-            }`}
-          >
-            <TerminalSquare className="w-3.5 h-3.5" />
-            Terminal
-          </button>
-          <button
-            onClick={() => setTab("copy")}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-colors cursor-pointer ${
-              tab === "copy"
-                ? "bg-slate-800 text-white"
-                : "text-slate-400 hover:text-slate-600"
-            }`}
-          >
-            <Copy className="w-3.5 h-3.5" />
-            Copy SKILL.md
-          </button>
-          <button
-            onClick={() => setTab("download")}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-colors cursor-pointer ${
-              tab === "download"
-                ? "bg-slate-800 text-white"
-                : "text-slate-400 hover:text-slate-600"
-            }`}
-          >
-            <Download className="w-3.5 h-3.5" />
-            Download
-          </button>
-        </div>
-        <a
-          href="https://github.com/fkb032/code-passport"
-          target="_blank"
-          rel="noreferrer"
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium text-slate-400 hover:text-slate-600 transition-colors"
+      <div className="flex items-center gap-1 mb-2">
+        <button
+          onClick={() => setTab("terminal")}
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-colors cursor-pointer ${
+            tab === "terminal"
+              ? "bg-slate-800 text-white"
+              : "text-slate-400 hover:text-slate-600"
+          }`}
         >
-          <Github className="w-3.5 h-3.5" />
-          GitHub
-        </a>
+          <TerminalSquare className="w-3.5 h-3.5" />
+          Terminal
+        </button>
+        <button
+          onClick={() => setTab("copy")}
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-colors cursor-pointer ${
+            tab === "copy"
+              ? "bg-slate-800 text-white"
+              : "text-slate-400 hover:text-slate-600"
+          }`}
+        >
+          <Copy className="w-3.5 h-3.5" />
+          Copy SKILL.md
+        </button>
+        <button
+          onClick={() => setTab("download")}
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-colors cursor-pointer ${
+            tab === "download"
+              ? "bg-slate-800 text-white"
+              : "text-slate-400 hover:text-slate-600"
+          }`}
+        >
+          <Download className="w-3.5 h-3.5" />
+          Download
+        </button>
       </div>
 
       {tab === "terminal" && (
@@ -85,14 +72,14 @@ function InstallBlock() {
           >
             <span className="text-indigo-400 select-none font-mono text-sm">$</span>
             <code className="flex-1 text-sm font-mono text-slate-300 overflow-x-auto whitespace-nowrap scrollbar-hide text-left">
-              mkdir -p .claude/skills/code-passport && curl -sL ...SKILL.md -o .claude/skills/code-passport/SKILL.md
+              npx skills add fkb032/code-passport
             </code>
             <span className="text-slate-500 group-hover:text-slate-300 transition-colors shrink-0">
               {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
             </span>
           </div>
           <p className="text-[11px] text-slate-400 mt-2 text-left">
-            Downloads SKILL.md into your project's <code className="text-slate-500">.claude/skills/code-passport/</code> directory. Then use <code className="text-slate-500">/code-passport</code> in Claude Code.
+            Works with Claude Code, Codex, Gemini CLI, Cursor, and more. Requires Node.js.
           </p>
         </div>
       )}
@@ -124,7 +111,7 @@ function InstallBlock() {
             </div>
           </div>
           <p className="text-[11px] text-slate-400 mt-2 text-left">
-            Save to <code className="text-slate-500">.claude/skills/code-passport/SKILL.md</code> in your project. Then use <code className="text-slate-500">/code-passport</code> in Claude Code.
+            Save to your project's skills directory. No Node.js required.
           </p>
         </div>
       )}
@@ -153,7 +140,7 @@ function InstallBlock() {
             <span className="text-xs text-slate-500 group-hover:text-slate-300 transition-colors">Download</span>
           </button>
           <p className="text-[11px] text-slate-400 mt-2 text-left">
-            Save to <code className="text-slate-500">.claude/skills/code-passport/SKILL.md</code> in your project. Then use <code className="text-slate-500">/code-passport</code> in Claude Code.
+            Save to your project's skills directory. No Node.js required.
           </p>
         </div>
       )}
@@ -305,7 +292,6 @@ export function Hero() {
           transition={{ duration: 0.5 }}
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-indigo-100/60 bg-indigo-50/40 text-indigo-500 text-sm font-medium mb-8 shadow-sm backdrop-blur-sm"
         >
-          <Sparkles className="w-4 h-4 text-indigo-500" />
           <span>Open source &middot; Global product audits</span>
         </motion.div>
 
@@ -342,7 +328,7 @@ export function Hero() {
           <InstallBlock />
         </motion.div>
 
-        {/* The "Passport" UI Dashboard Mockup - Rebuilt for better fidelity */}
+        {/* The "Passport" UI Dashboard Mockup */}
         <motion.div 
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -357,8 +343,8 @@ export function Hero() {
             <div className="relative flex flex-col md:flex-row rounded-2xl bg-white shadow-2xl shadow-slate-900/10 border border-slate-200/60 overflow-hidden text-left font-sans">
               
               {/* Left Column (Metadata) */}
-              <div className="w-full md:w-[280px] bg-slate-50 border-b md:border-b-0 md:border-r border-slate-200 px-6 py-5 flex flex-col justify-between shrink-0">
-                <div>
+              <div className="w-full md:w-[280px] bg-slate-50 border-b md:border-b-0 md:border-r border-slate-200 px-6 py-5 flex flex-col shrink-0">
+                <div className="flex-1">
                   <div className="text-[10px] font-bold tracking-widest text-slate-400 uppercase mb-4">
                     Clearance Document
                   </div>
@@ -370,7 +356,7 @@ export function Hero() {
                     Scan your codebase for market-specific product issues before shipping.
                   </p>
 
-                  <div className="grid grid-cols-2 gap-y-4 gap-x-4 text-xs font-mono mb-6">
+                  <div className="grid grid-cols-2 gap-y-4 gap-x-4 text-xs font-mono">
                     <div>
                       <div className="text-slate-400 mb-1 tracking-wider text-[10px]">ORIGIN</div>
                       <div className="text-slate-900 font-medium">Local</div>
@@ -398,13 +384,11 @@ export function Hero() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-2 mt-auto">
-                  <button className="py-2 rounded-lg bg-indigo-500 text-white font-medium text-[13px] hover:bg-indigo-600 transition-colors shadow-sm">
-                    Get Started
-                  </button>
-                  <button className="py-2 rounded-lg bg-white border border-slate-200 text-slate-700 font-medium text-[13px] hover:bg-slate-50 transition-colors shadow-sm">
-                    GitHub
-                  </button>
+                {/* Machine Readable Zone */}
+                <div className="mt-6 pt-3">
+                  <div className="font-mono text-[9px] tracking-[0.2em] text-slate-300 select-all overflow-hidden whitespace-nowrap">
+                    P&lt;DFV&lt;&lt;CODEPASSPORT&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+                  </div>
                 </div>
               </div>
 
@@ -498,12 +482,6 @@ export function Hero() {
                   })}
                 </div>
 
-                {/* Machine Readable Zone */}
-                <div className="mt-auto pt-3 border-t border-slate-100">
-                  <div className="font-mono text-[9px] tracking-[0.2em] text-slate-300 break-all select-all">
-                    P&lt;DFV&lt;&lt;CODEPASSPORT&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
-                  </div>
-                </div>
               </div>
 
             </div>

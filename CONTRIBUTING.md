@@ -20,7 +20,7 @@ The skill supports two modes:
 
 ### Option 2: Edit directly
 
-1. Copy the template below (or use `markets/brazil.md` as a reference)
+1. Copy the template below (or use `skills/code-passport/markets/brazil.md` as a reference)
 2. Fill it out for your market
 3. Open a pull request
 
@@ -53,7 +53,7 @@ Before submitting, check:
 
 # Market Template
 
-Copy everything below this line into a new file at `markets/[market-name].md`.
+Copy everything below this line into a new file at `skills/code-passport/markets/[market-name].md`.
 
 ---
 

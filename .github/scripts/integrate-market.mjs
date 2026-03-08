@@ -2,8 +2,8 @@ import Anthropic from "@anthropic-ai/sdk";
 import fs from "fs";
 import path from "path";
 
-const MARKETS_DIR = "markets";
-const SKILL_PATH = ".claude/skills/code-passport/SKILL.md";
+const MARKETS_DIR = "skills/code-passport/markets";
+const SKILL_PATH = "skills/code-passport/SKILL.md";
 
 function isChecklistFormat(content) {
   // Checklist format has tables with "Check | How to Verify | Severity"
@@ -101,7 +101,7 @@ async function main() {
   const markets = getMarketFiles();
 
   if (markets.length === 0) {
-    console.log("No market files found in markets/");
+    console.log("No market files found in skills/code-passport/markets/");
     return;
   }
 

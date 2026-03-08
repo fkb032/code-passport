@@ -6,23 +6,25 @@ export function HowItWorks() {
     {
       number: "01",
       title: "Add the skill",
-      description: "Copy the skill file into your project's .claude/skills/ directory. One file, zero dependencies.",
+      description: "One command installs it. Works with Claude Code, Codex, Gemini CLI, Cursor, and more.",
       icon: <DownloadCloud className="w-5 h-5 text-indigo-500" />,
-      code: "curl -o .claude/skills/code-passport.md https://raw.githubusercontent.com/fkb032/code-passport/main/SKILL.md"
+      code: "npx skills add fkb032/code-passport"
     },
     {
       number: "02",
       title: "Run the audit",
-      description: "Use the /code-passport slash command with your target market. It scans your codebase for market-specific gaps.",
+      description: "Run it for all markets at once, or pass a specific one. It scans your codebase for market-specific gaps.",
       icon: <PlayCircle className="w-5 h-5 text-indigo-500" />,
-      code: "/code-passport --market brazil"
+      code: "/code-passport",
+      codeAlt: "/code-passport brazil"
     },
     {
       number: "03",
       title: "Fix what matters",
       description: "Get a prioritized list of actionable issues (payments, identity, UX) mapped directly to your files.",
       icon: <Wrench className="w-5 h-5 text-indigo-500" />,
-      code: "# issues are listed with file paths — fix them directly"
+      code: "CRIT  No Pix payment option           payments/checkout.ts",
+      isOutput: true
     }
   ];
 
@@ -50,9 +52,6 @@ export function HowItWorks() {
         </div>
 
         <div className="relative">
-          {/* Connecting line for desktop */}
-          <div className="absolute top-8 left-0 w-full h-0.5 bg-slate-100 hidden lg:block" />
-
           <div className="grid lg:grid-cols-3 gap-12 relative">
             {steps.map((step, index) => (
               <motion.div 
@@ -78,11 +77,21 @@ export function HowItWorks() {
                   </p>
                   
                   {/* Terminal code snippet */}
-                  <div className="bg-slate-900 rounded-lg p-4 font-mono text-sm text-slate-300 flex items-center gap-3 group/code cursor-copy border border-slate-800 shadow-inner hover:bg-slate-800 transition-colors text-left">
-                    <span className="text-indigo-500 select-none">$</span>
-                    <code className="flex-1 overflow-x-auto whitespace-nowrap scrollbar-hide">
-                      {step.code}
-                    </code>
+                  <div className="bg-slate-900 rounded-lg p-4 font-mono text-sm text-slate-300 border border-slate-800 shadow-inner text-left space-y-2">
+                    <div className="flex items-center gap-3">
+                      {!step.isOutput && <span className="text-indigo-500 select-none">$</span>}
+                      <code className="flex-1 overflow-x-auto whitespace-nowrap scrollbar-hide">
+                        {step.code}
+                      </code>
+                    </div>
+                    {step.codeAlt && (
+                      <div className="flex items-center gap-3 pt-1 border-t border-slate-800">
+                        <span className="text-indigo-500 select-none">$</span>
+                        <code className="flex-1 overflow-x-auto whitespace-nowrap scrollbar-hide">
+                          {step.codeAlt}
+                        </code>
+                      </div>
+                    )}
                   </div>
                 </div>
               </motion.div>

@@ -68,9 +68,9 @@ When invoked, immediately scan the project to understand the stack:
 
 ### Step 3: Load Market Checklist(s)
 
-Read the market checklist file(s) from `markets/` in this repository. Each checklist contains all audit categories, checks, severity levels, and scan patterns specific to that market.
+Read the market checklist file(s) from the `markets/` directory located alongside this SKILL.md file. **Load only the market files relevant to the current audit scope.** If auditing a single market, read only that file. If auditing all markets, read each file as you reach that market's section — do not load everything upfront.
 
-**Repository location:** The `markets/` directory is at the root of the Code Passport repository. Each file follows a consistent structure with categories, audit checklists, and contextual knowledge.
+**Location:** `markets/` is a sibling directory to this file. For example, `markets/brazil.md` contains the Brazil market checklist. Each file follows a consistent structure with categories, audit checklists, and contextual knowledge.
 
 ### Step 4: Run Market Audit(s)
 
