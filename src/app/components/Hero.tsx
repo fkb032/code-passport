@@ -279,28 +279,18 @@ export function Hero() {
   const scoreStyle = SCORE_COLORS[country.scoreColor];
 
   return (
-    <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-white">
+    <section className="relative pt-28 pb-20 lg:pt-40 lg:pb-32 overflow-hidden bg-white">
       {/* Background decorations to make it less flat */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-indigo-400/[0.06] blur-[120px] rounded-full pointer-events-none" />
-      
+
       <div className="max-w-7xl mx-auto px-6 relative z-10 text-center flex flex-col items-center">
-        
-        {/* Badge */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-indigo-100/60 bg-indigo-50/40 text-indigo-500 text-sm font-medium mb-8 shadow-sm backdrop-blur-sm"
-        >
-          <span>Open source &middot; Global product audits</span>
-        </motion.div>
 
         {/* Headlines */}
-        <motion.h1 
+        <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-5xl lg:text-7xl font-bold tracking-tight text-slate-900 max-w-4xl mx-auto leading-[1.1]"
+          className="text-5xl lg:text-7xl font-bold tracking-tight text-slate-900 max-w-4xl mx-auto leading-[1.1]" style={{ fontFamily: "'General Sans', sans-serif" }}
         >
           Audit your product for <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-indigo-400">
@@ -348,7 +338,7 @@ export function Hero() {
                   <div className="text-[10px] font-bold tracking-widest text-slate-400 uppercase mb-4">
                     Clearance Document
                   </div>
-                  <div className="flex items-center gap-2 text-xl font-bold tracking-tight text-slate-900 mb-1.5">
+                  <div className="flex items-center gap-2 text-xl font-bold tracking-tight text-slate-900 mb-1.5" style={{ fontFamily: "'General Sans', sans-serif" }}>
                     <Stamp className="w-5 h-5 text-indigo-500" />
                     Code<span className="text-indigo-500">Passport</span>
                   </div>
