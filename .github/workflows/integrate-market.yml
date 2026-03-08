@@ -56,7 +56,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           BRANCH="auto/integrate-market-$(date +%s)"
           git checkout -b "$BRANCH"
-          git add markets/ code-passport/skill/SKILL.md
+          git add markets/ .claude/skills/code-passport/SKILL.md
           git commit -m "Integrate new market into Code Passport"
           git push origin "$BRANCH"
 
