@@ -217,7 +217,7 @@ const COUNTRY_DATA: Record<CountryKey, CountryData> = {
       { severity: "CRIT", label: "No konbini payment option", path: "payments/" },
       { severity: "CRIT", label: "Missing keigo (honorific) form copy", path: "i18n/ja.json" },
       { severity: "WARN", label: "No furigana input for name fields", path: "components/forms/" },
-      { severity: "WARN", label: "Date format not YYYY/MM/DD", path: "utils/date.ts" },
+      { severity: "WARN", label: "No LINE integration", path: "auth/social.ts" },
     ],
   },
   india: {

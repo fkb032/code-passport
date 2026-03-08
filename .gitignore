@@ -2,3 +2,4 @@
 .local-only/
 node_modules/
 dist/
+.vercel
