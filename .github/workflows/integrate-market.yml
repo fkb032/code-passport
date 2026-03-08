@@ -39,8 +39,12 @@ jobs:
           # Get the GitHub username of who authored the commit that triggered this
           CONTRIBUTOR=$(gh api repos/${{ github.repository }}/commits/${{ github.sha }} --jq '.author.login // empty')
           echo "username=${CONTRIBUTOR}" >> $GITHUB_OUTPUT
-          # Get changed market files for the PR body
-          CHANGED=$(git diff HEAD~1 --name-only -- 'markets/*.md' | xargs -I{} basename {} .md | paste -sd ', ' -)
+          # Get changed market files from what the script modified + what was pushed
+          CHANGED=$(git diff --name-only -- 'markets/*.md' | xargs -I{} basename {} .md | paste -sd ', ' -)
+          # Fallback: if script didn't modify anything, use the triggering commit
+          if [ -z "$CHANGED" ]; then
+            CHANGED=$(git diff HEAD~1 --name-only -- 'markets/*.md' | xargs -I{} basename {} .md | paste -sd ', ' -)
+          fi
           echo "markets=${CHANGED}" >> $GITHUB_OUTPUT
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
