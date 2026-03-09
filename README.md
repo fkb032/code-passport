@@ -2,6 +2,8 @@
 
 An automated skill that audits your codebase for market-specific cultural, UX, and product issues. Built from 4+ years of building products in Brazil (fraud prevention, real estate technology, ML-powered content moderation) and hard-won lessons about what breaks when you ship Western defaults into emerging markets. Goes beyond localization into payments, trust signals, identity verification, communication patterns, compliance, and more.
 
+**Website:** [codepassport.ai](https://codepassport.ai)
+
 Currently supports **Brazil**. By [Farhan Khalaf](https://linkedin.com/in/farhankhalaf).
 
 ## What It Checks
@@ -55,6 +57,14 @@ The skill scans your codebase and produces a report saved to `outputs/code-passp
 
 See [example-output.md](code-passport/skill/example-output.md) for a full sample audit report against a fictional e-commerce codebase.
 
+## Contributing
+
+Code Passport's value comes from practitioner knowledge — people who've shipped products in a specific market and know what breaks. If that's you, we want your expertise.
+
+To contribute market knowledge, clone this repo and run the `/contribute-codepassport` skill in Claude Code. It's a guided interview that walks you through what we need. You don't have to be an expert on everything — skip sections you're unsure about, and others can fill the gaps.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide.
+
 ## Repo Structure
 
 ```
@@ -67,4 +77,3 @@ code-passport/
 ## Coming Soon
 
 - Additional markets (Arabic-speaking, India, Japan)
-- Web app version (paste a URL, pick a market, get a report)

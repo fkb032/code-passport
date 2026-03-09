@@ -12,7 +12,7 @@ We're not looking for i18n checklists. Those exist. We're looking for the stuff 
 
 ### Option 1: Use the skill (recommended)
 
-Run `/contribute-market` in Claude Code. It'll interview you, structure your knowledge, and open a PR automatically.
+Run `/contribute-codepassport` in Claude Code. It'll interview you, structure your knowledge, and open a PR automatically.
 
 The skill supports two modes:
 - **Generalist** — you know a market well across the board
@@ -30,7 +30,7 @@ You can edit directly in GitHub's web UI — no dev setup needed. If you'd rathe
 
 If a market file already exists and you think it's missing something or could be improved:
 
-- Run `/contribute-market` and name that market — it'll show you what's covered and what's missing, then focus the interview on gaps
+- Run `/contribute-codepassport` and name that market — it'll show you what's covered and what's missing, then focus the interview on gaps
 - Or open a PR directly with your additions
 
 Contributors are tracked via git history — no need to add your name to the file.

@@ -79,7 +79,7 @@ function InstallBlock() {
             </span>
           </div>
           <p className="text-[11px] text-slate-400 mt-2 text-left">
-            Works with Claude Code, Codex, Gemini CLI, Cursor, and more. Requires Node.js.
+            Works with Claude Code, Codex, Gemini CLI, Cursor, and more.
           </p>
         </div>
       )}

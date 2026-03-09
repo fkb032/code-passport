@@ -20,16 +20,15 @@ export function Navbar() {
 
         <div className="flex items-center gap-6">
           {isHome && (
-            <a href="#how-it-works" className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors hidden sm:block">
-              How it works
-            </a>
+            <>
+              <a href="#how-it-works" className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors hidden sm:block">
+                How it works
+              </a>
+              <a href="#contribute" className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors hidden sm:block">
+                Contribute
+              </a>
+            </>
           )}
-          <Link
-            to="/contribute/chat"
-            className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors hidden sm:block"
-          >
-            Contribute
-          </Link>
           <a
             href="https://github.com/fkb032/code-passport"
             target="_blank"
