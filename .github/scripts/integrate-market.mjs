@@ -39,7 +39,7 @@ async function convertToChecklist(marketName, content) {
   const brazilChecklist = fs.readFileSync(brazilPath, "utf-8");
 
   const response = await client.messages.create({
-    model: "claude-sonnet-4-20250514",
+    model: "claude-sonnet-4-6",
     max_tokens: 16000,
     messages: [
       {
